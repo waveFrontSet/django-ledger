@@ -18,10 +18,10 @@ class Party(models.Model):
             valid_at = date.today()
         sum_amount = models.Sum("amount", default=0)
         sent_transactions = Transaction.objects.filter(
-            sender=self, valid_at__lte=valid_at
+            sender=self, valid_at__lt=valid_at
         ).aggregate(sum_amount)
         received_transactions = Transaction.objects.filter(
-            recipient=self, valid_at__lte=valid_at
+            recipient=self, valid_at__lt=valid_at
         ).aggregate(sum_amount)
         return received_transactions["amount__sum"] - sent_transactions["amount__sum"]
 
