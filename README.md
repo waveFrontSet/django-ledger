@@ -60,3 +60,32 @@ Noteworthy comments and thoughts:
   date. If no date is given, we take the current date (on the server) as the
   default.
 - It is possible for transactions to lie in the future.
+
+## Bonus: `ingestcsv` command
+
+To make it easier to ingest data and experiment with it, I've created a small custom
+command to ingest a csv file into the app. As an example, if you take
+
+``` csv
+2015-01-16,john,mary,125.00
+2015-01-17,john,supermarket,20.00
+2015-01-17,mary,insurance,100.00
+```
+
+and put it into a file `data.csv`, you may ingest it by running
+
+```
+docker compose run web ingestcsv data.csv
+```
+
+Afterwards, you may fire up the interactive shell and experiment with the data:
+
+```python
+❯ docker compose run web shell
+>>> from financial_transactions.models import Party, Transaction
+>>> Party.objects.all()
+<QuerySet [<Party: john>, <Party: mary>, <Party: supermarket>, <Party: insurance>]>
+>>> john = Party.objects.get(name="john")
+>>> john.balance()
+-14500
+```
