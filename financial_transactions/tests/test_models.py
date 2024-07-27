@@ -21,3 +21,7 @@ class TestTransactionStr:
 
     def test_amount_in_str(self, transaction: Transaction) -> None:
         assert f"{transaction.amount / 100:.2f}" in str(transaction)
+
+
+def test_balance_with_no_transaction(party: Party) -> None:
+    assert party.balance() == 0
