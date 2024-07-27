@@ -28,13 +28,15 @@ docker compose exec web pytest
 
 ## Models
 
-We've implemented the ledger using two models: One `Party` models identifying the sender
+We've implemented the ledger using two models: One `Party` model identifying the sender
 or recipient of a financial transaction and `Transaction` for the transaction data.
 
 Noteworthy comments and thoughts:
 
 - It is possible that the sender and the recipient are the same party. This has
-  no influence on the computed balances, but it might pollute the database.
+  no impact on the computed balances, but it might pollute the database. We may
+  prevent this by implementing [custom model
+  validation](https://docs.djangoproject.com/en/5.0/ref/models/instances/#django.db.models.Model.clean)
 - We assume that the only request patterns are for a single party and any given
   date. If no date is given, we take the current date (on the server) as the
   default.
