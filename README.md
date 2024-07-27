@@ -1,5 +1,14 @@
 # A small ledger app in Django
 
+This is a small Django app to compute account balances based on a history
+of transactions.
+
+## Too much boilerplate?
+
+To ease the inspection and review, we've put the main code changes of the
+challenge solution into the [PR
+#1](https://github.com/waveFrontSet/django-ledger/pull/1).
+
 ## Getting up and running
 
 `docker compose up -d --build` will fire up three containers:
@@ -15,6 +24,16 @@ with models:
 ``` sh
 docker compose run web shell
 ```
+
+## Running linters and formatters
+
+We are using ruff both for linting and formatting purposes. The relevant commands
+are inside a pre-commit hook that you may install and run on-demand as follows.
+
+- Install [pre-commit](https://pre-commit.com/#install).
+- Run `pre-commit install`
+- Run `pre-commit run -a`
+
 
 ## Running tests
 
