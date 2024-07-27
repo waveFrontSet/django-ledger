@@ -14,11 +14,17 @@ pytest = "^8.3.2"
 pytest-cov = "^5.0.0"
 ruff = "^0.5.5"
 ruff-lsp = "^0.0.54"
-django-stubs = "^5.0.2"
-mypy = "^1.11.0"
+django-stubs = {extras = ["compatible-mypy"], version = "^5.0.2"}
+mypy = "^1.10.0"
 pytest-django = "^4.8.0"
 factory-boy = "^3.3.0"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.mypy]
+plugins = ["mypy_django_plugin.main"]
+
+[tool.django-stubs]
+django_settings_module = "django_ledger.settings"
