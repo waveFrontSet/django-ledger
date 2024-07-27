@@ -15,3 +15,13 @@ with models:
 ``` sh
 docker compose run web shell
 ```
+
+## Running tests
+
+Because docker compose builds the `development` target of the `Dockerfile`, `pytest`
+and all necessary dev dependencies are installed. You may run tests in the already
+running `web` container via
+
+``` sh
+docker compose exec web pytest
+```
