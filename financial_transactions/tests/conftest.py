@@ -1,7 +1,8 @@
 import pytest
 
-from .factories import PartyFactory, TransactionFactory
 from financial_transactions.models import Party, Transaction
+
+from .factories import PartyFactory, TransactionFactory
 
 
 @pytest.fixture

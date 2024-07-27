@@ -1,4 +1,5 @@
 import factory
+
 from financial_transactions.models import Party, Transaction
 
 
